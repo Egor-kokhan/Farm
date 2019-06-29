@@ -1,0 +1,19 @@
+spring:
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto:
+    properties:
+          hibernate:
+            jdbc:
+              lob:
+                non_contextual_creation: true
+  datasource:
+    platform: postgres
+    url: jdbc:postgresql://localhost:5432/postgres
+    username: postgres
+    password:
+    driverClassName: org.postgresql.Driver
+    sql-script-encoding: UTF-8
+server:
+  port: 8888
