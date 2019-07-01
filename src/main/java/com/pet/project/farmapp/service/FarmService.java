@@ -1,6 +1,7 @@
 package com.pet.project.farmapp.service;
 
 import com.pet.project.farmapp.DTO.FarmDto;
+import com.pet.project.farmapp.DTO.FarmerDto;
 
 import java.util.List;
 
@@ -15,6 +16,7 @@ import java.util.List;
 
 public interface FarmService {
     List<FarmDto> getAll();
+    List<FarmerDto> getAllFarmersByFarmId(long id);
     FarmDto getById(long id);
     void create(FarmDto farmDto);
     void delete(long id);

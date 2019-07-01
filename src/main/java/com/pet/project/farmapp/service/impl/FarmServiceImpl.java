@@ -1,10 +1,13 @@
 package com.pet.project.farmapp.service.impl;
 
 import com.pet.project.farmapp.DTO.FarmDto;
+import com.pet.project.farmapp.DTO.FarmerDto;
 import com.pet.project.farmapp.controller.exceptions.ElasticException;
-import com.pet.project.farmapp.mapper.FarmMapper;
+import com.pet.project.farmapp.mapper.FarmAppMapper;
 import com.pet.project.farmapp.model.Farm;
+import com.pet.project.farmapp.model.Farmer;
 import com.pet.project.farmapp.repository.FarmRepository;
+import com.pet.project.farmapp.repository.FarmerRepository;
 import com.pet.project.farmapp.service.FarmService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -16,16 +19,28 @@ import java.util.List;
 @Service
 public class FarmServiceImpl implements FarmService {
 
+    private final FarmRepository farmRepository;
+    private final FarmerRepository farmerRepository;
+    private final FarmAppMapper mapper;
+
     @Autowired
-    private FarmRepository farmRepository;
-    @Autowired
-    private FarmMapper mapper;
+    public FarmServiceImpl(FarmRepository farmRepository, FarmerRepository farmerRepository, FarmAppMapper mapper) {
+        this.farmRepository = farmRepository;
+        this.farmerRepository = farmerRepository;
+        this.mapper = mapper;
+    }
 
     @Override
     @Transactional
     public List<FarmDto> getAll() {
-        System.out.println();
         return mapper.convertFarmListToFarmDtoList(farmRepository.findAll());
+    }
+
+    @Override
+    @Transactional
+    public List<FarmerDto> getAllFarmersByFarmId(long id) {
+        List<Farmer> farmersDto = farmerRepository.findAllByFarmId(id);
+        return mapper.convertFarmerListToFarmerDtoList(farmersDto);
     }
 
     @Override
