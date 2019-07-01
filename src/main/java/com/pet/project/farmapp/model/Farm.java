@@ -7,15 +7,13 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import java.util.Set;
 
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
+@Data @NoArgsConstructor @AllArgsConstructor
 @Entity
 public class Farm {
 
     @Id
-    @SequenceGenerator( name = "jpaSequence", sequenceName = "farm_id_seq",allocationSize = 1,initialValue = 5)
-    @GeneratedValue( strategy = GenerationType.SEQUENCE, generator = "jpaSequence")
+    @SequenceGenerator( name = "jpaFarmSequence", sequenceName = "farm_id_seq",allocationSize = 1)
+    @GeneratedValue( strategy = GenerationType.SEQUENCE, generator = "jpaFarmSequence")
     @Column(name = "id", nullable = false)
     private Long id;
 

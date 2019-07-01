@@ -10,7 +10,14 @@ import java.util.List;
  * /farmer/add
  * /farmer/update
  * /farmer/delete
+ *
+ *   List<FarmDto> getAll();
+ *   FarmDto getById(long id);
+ *   void create(FarmDto farmDto);
+ *   void delete(long id);
+ *   void update(FarmDto farmDto, long id);
  */
 public interface FarmerService {
     List<FarmerDto> getAll();
+
 }

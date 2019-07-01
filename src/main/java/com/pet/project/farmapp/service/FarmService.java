@@ -17,6 +17,7 @@ import java.util.List;
 public interface FarmService {
     List<FarmDto> getAll();
     List<FarmerDto> getAllFarmersByFarmId(long id);
+    //TODO List<Cow> getAllCowsByFarmId(long id)
     FarmDto getById(long id);
     void create(FarmDto farmDto);
     void delete(long id);

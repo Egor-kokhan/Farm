@@ -26,7 +26,7 @@ public class FarmerController {
     }
 
     @GetMapping("/list")
-    public ResponseEntity<List<FarmerDto>> getFarmers(){
+    public ResponseEntity<List<FarmerDto>> getAll(){
         List<FarmerDto> farmers = service.getAll();
         return ResponseEntity.ok(farmers);
     }

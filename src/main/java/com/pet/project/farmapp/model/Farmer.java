@@ -6,15 +6,16 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.Set;
 
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
+@Data @NoArgsConstructor @AllArgsConstructor
 @Entity
 public class Farmer {
+
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
+    @SequenceGenerator( name = "jpaFarmerSequence", sequenceName = "farmer_id_seq",allocationSize = 1)
+    @GeneratedValue( strategy = GenerationType.SEQUENCE, generator = "jpaFarmerSequence")
+    @Column(name = "id", nullable = false)
     private Long id;
 
     @Column(name = "name", nullable = false)
@@ -35,4 +36,7 @@ public class Farmer {
     @Column(name = 	"salary")
     private Long salary;
 
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "farmer_id")
+    private Set<Cow> cows;
 }

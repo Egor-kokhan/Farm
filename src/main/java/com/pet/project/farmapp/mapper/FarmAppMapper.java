@@ -1,7 +1,9 @@
 package com.pet.project.farmapp.mapper;
 
+import com.pet.project.farmapp.DTO.CowDto;
 import com.pet.project.farmapp.DTO.FarmDto;
 import com.pet.project.farmapp.DTO.FarmerDto;
+import com.pet.project.farmapp.model.Cow;
 import com.pet.project.farmapp.model.Farm;
 import com.pet.project.farmapp.model.Farmer;
 import org.mapstruct.Mapper;
@@ -21,4 +23,10 @@ public interface FarmAppMapper {
     FarmerDto farmerDtoToFarmer(Farmer entity);
 
     List<FarmerDto> convertFarmerListToFarmerDtoList(List<Farmer> list);
+
+    Cow cowToCowDto(CowDto dto);
+
+    CowDto cowDtoToCow(Cow entity);
+
+    List<CowDto> convertCowListToCowDtoList(List<Cow> list);
 }
