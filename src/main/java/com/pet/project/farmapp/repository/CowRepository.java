@@ -7,4 +7,5 @@ import java.util.List;
 
 public interface CowRepository extends JpaRepository<Cow, Long> {
     List<Cow> findAllByFarmerId(Long id);
+    List<Cow> findAllByFarmerIdIn(List<Long> id);
 }

@@ -27,7 +27,7 @@ public class FarmerDto {
     private String age;
 
     @Size(max = 100)
-    private String workExperience;
+    private Long workExperience;
 
     private Long salary;
 }

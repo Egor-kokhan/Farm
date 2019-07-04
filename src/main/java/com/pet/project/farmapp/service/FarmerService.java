@@ -1,5 +1,6 @@
 package com.pet.project.farmapp.service;
 
+import com.pet.project.farmapp.DTO.CowDto;
 import com.pet.project.farmapp.DTO.FarmerDto;
 
 import java.util.List;
@@ -11,13 +12,12 @@ import java.util.List;
  * /farmer/update
  * /farmer/delete
  *
- *   List<FarmDto> getAll();
- *   FarmDto getById(long id);
- *   void create(FarmDto farmDto);
- *   void delete(long id);
- *   void update(FarmDto farmDto, long id);
  */
 public interface FarmerService {
     List<FarmerDto> getAll();
-
+    List<CowDto> getAllCowsById(long id);
+    FarmerDto getById(long id);
+    void create(FarmerDto farmerDto);
+    void delete(long id);
+    void update(FarmerDto farmerDto, long id);
 }

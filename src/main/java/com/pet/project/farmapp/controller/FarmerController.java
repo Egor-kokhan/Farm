@@ -1,14 +1,12 @@
 package com.pet.project.farmapp.controller;
 
-import com.pet.project.farmapp.DTO.FarmDto;
+import com.pet.project.farmapp.DTO.CowDto;
 import com.pet.project.farmapp.DTO.FarmerDto;
-import com.pet.project.farmapp.model.Farmer;
 import com.pet.project.farmapp.service.FarmerService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -31,4 +29,46 @@ public class FarmerController {
         return ResponseEntity.ok(farmers);
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<FarmerDto> getById(@PathVariable Long id) {
+        FarmerDto farmerDto = service.getById(id);
+        return ResponseEntity.ok(farmerDto);
+    }
+
+    @GetMapping("/{id}/cow/list")
+    public ResponseEntity<List<CowDto>> getAllCowsByFarmerId(@PathVariable Long id) {
+        List<CowDto> cows = service.getAllCowsById(id);
+        return ResponseEntity.ok(cows);
+    }
+
+    @PostMapping
+    public ResponseEntity<?> create(@RequestBody FarmerDto farmerDto){
+        service.create(farmerDto);
+        return ResponseEntity.ok(HttpStatus.ACCEPTED);
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<?> update(@RequestBody FarmerDto farmerDto, @PathVariable long id){
+        service.update(farmerDto,id);
+        return ResponseEntity.ok(HttpStatus.ACCEPTED);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> delete(@PathVariable long id){
+        service.delete(id);
+        return ResponseEntity.ok(HttpStatus.ACCEPTED);
+    }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+

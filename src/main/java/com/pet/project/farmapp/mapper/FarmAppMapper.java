@@ -24,9 +24,9 @@ public interface FarmAppMapper {
 
     List<FarmerDto> convertFarmerListToFarmerDtoList(List<Farmer> list);
 
-    Cow cowToCowDto(CowDto dto);
+    Cow cowDtoToCow(CowDto dto);
 
-    CowDto cowDtoToCow(Cow entity);
+    CowDto cowToCowDto(Cow entity);
 
     List<CowDto> convertCowListToCowDtoList(List<Cow> list);
 }

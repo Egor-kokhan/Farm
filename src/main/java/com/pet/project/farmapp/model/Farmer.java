@@ -31,7 +31,7 @@ public class Farmer {
     private String age;
 
     @Column(name = "work_experience")
-    private String workExperience;
+    private Long workExperience;
 
     @Column(name = 	"salary")
     private Long salary;

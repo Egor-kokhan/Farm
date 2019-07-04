@@ -1,13 +1,16 @@
 package com.pet.project.farmapp.controller;
 
+import com.pet.project.farmapp.DTO.CowDto;
 import com.pet.project.farmapp.DTO.FarmDto;
 import com.pet.project.farmapp.DTO.FarmerDto;
+import com.pet.project.farmapp.model.Farmer;
 import com.pet.project.farmapp.service.FarmService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
@@ -35,10 +38,24 @@ public class FarmController {
         return ResponseEntity.ok(farmDto);
     }
 
-    @GetMapping("/farmerlist/{id}")
+    @GetMapping("/{id}/farmer/list")
     public ResponseEntity<List<FarmerDto>> getAllFarmersByFarmId(@PathVariable Long id){
         List<FarmerDto> farmers = service.getAllFarmersByFarmId(id);
         return ResponseEntity.ok(farmers);
+    }
+
+    @GetMapping("/{id}/cow/list")
+    public ResponseEntity<List<CowDto>> getAllCowsByFarmId(@PathVariable Long id){
+        List<CowDto> cows = service.getAllCowsByFarmId(id);
+        return ResponseEntity.ok(cows);
+    }
+
+    @GetMapping("/{id}/cow/cost")
+    public ResponseEntity<String> getCowsCostByFarmId(@PathVariable Long id){
+        Long totalCost = service.getCowsCostByFarmId(id);
+        String msg = "Стоимость всех коров фермы с айди " + id
+                + " - " + totalCost + " рублей.";
+        return ResponseEntity.ok(msg);
     }
 
     @PostMapping
