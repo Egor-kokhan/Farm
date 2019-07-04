@@ -40,38 +40,45 @@ public class FarmerServiceImpl implements FarmerService {
 
     @Override
     @Transactional
-    public List<CowDto> getAllCowsById(long id) {
+    public List<CowDto> getAllCowsByFarmerId(long id) {
+        if(!farmerRepository.existsById(id)){
+            throw new ElasticException(HttpStatus.NOT_FOUND, "Фермер не найден. Введите корректный id.");
+        }
         List<Cow> cows = cowRepository.findAllByFarmerId(id);
         return mapper.convertCowListToCowDtoList(cows);
     }
 
-    @Transactional
     @Override
+    @Transactional
     public FarmerDto getById(long id) {
+        if(!farmerRepository.existsById(id)){
+            throw new ElasticException(HttpStatus.NOT_FOUND, "Фермер не найден. Введите корректный id.");
+        }
         return mapper.farmerDtoToFarmer(farmerRepository.getOne(id));
     }
 
-    @Transactional
     @Override
+    @Transactional
     public void create(FarmerDto farmerDto) {
         Farmer newFarmer = mapper.farmerToFarmerDto(farmerDto);
         farmerRepository.save(newFarmer);
     }
 
-    @Transactional
     @Override
+    @Transactional
     public void delete(long id) {
+
         if(!farmerRepository.existsById(id)){
-            throw new ElasticException(HttpStatus.NOT_FOUND, "Запись не найдена. Введите корректный id.");
+            throw new ElasticException(HttpStatus.NOT_FOUND, "Фермер не найден. Введите корректный id.");
         }
         farmerRepository.deleteById(id);
     }
 
-    @Transactional
     @Override
+    @Transactional
     public void update(FarmerDto farmerDto, long id) {
         if(!farmerRepository.existsById(id)){
-            throw new ElasticException(HttpStatus.NOT_FOUND,"Запись не найдена. Введите корректный id.");
+            throw new ElasticException(HttpStatus.NOT_FOUND,"Фермер не найден. Введите корректный id.");
         }
         Farmer farmer = farmerRepository.getOne(id);
         if(farmerDto.getName()!= null){

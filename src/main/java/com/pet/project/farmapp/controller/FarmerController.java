@@ -37,7 +37,7 @@ public class FarmerController {
 
     @GetMapping("/{id}/cow/list")
     public ResponseEntity<List<CowDto>> getAllCowsByFarmerId(@PathVariable Long id) {
-        List<CowDto> cows = service.getAllCowsById(id);
+        List<CowDto> cows = service.getAllCowsByFarmerId(id);
         return ResponseEntity.ok(cows);
     }
 

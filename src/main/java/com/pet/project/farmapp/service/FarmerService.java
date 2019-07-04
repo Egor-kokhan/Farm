@@ -7,15 +7,16 @@ import java.util.List;
 
 /**
  * /farmer/list
- * /farmer/cowlist
- * /farmer/add
- * /farmer/update
- * /farmer/delete
+ * /farmer/{id}
+ * /farmer/{id}/cow/list
+ * /farmer/(post)
+ * /farmer/{id}(put)
+ * /farmer/{id}(delete)
  *
  */
 public interface FarmerService {
     List<FarmerDto> getAll();
-    List<CowDto> getAllCowsById(long id);
+    List<CowDto> getAllCowsByFarmerId(long id);
     FarmerDto getById(long id);
     void create(FarmerDto farmerDto);
     void delete(long id);

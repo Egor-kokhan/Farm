@@ -8,21 +8,6 @@ import lombok.NoArgsConstructor;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-/**
- * private Long id;
- *
- *     @Column(name = "farmer_id", nullable = false)
- *     private Long farmerId;
- *
- *     @Column(name = "weight", nullable = false)
- *     private Long weight;
- *
- *     @Column(name = "age", nullable = false)
- *     private Long age;
- *
- *     @Column(name = "is_healthy",nullable = false)
- *     private boolean isHealthy;
- */
 @Data @NoArgsConstructor @AllArgsConstructor
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class CowDto {

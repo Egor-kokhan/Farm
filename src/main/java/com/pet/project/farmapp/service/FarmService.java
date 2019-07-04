@@ -12,11 +12,11 @@ import java.util.List;
  * /farm/{id}/farmer/list
  * /farm/{id}/cow/list
  * /farm/{id}/cow/cost
- * /farm/(Post)
- * /farm/(Put)
- * /farm/(Delete)
+ * /farm/(post)
+ * /farm/{id}(put)
+ * /farm/{id}(delete)
  *
- * Формула и условия для вычисления стоимости коровы
+ * Формула и условия для вычисления стоимости коровы:
  * Должна быть здоровой
  * Возраст от 3 до 12 лет (включительно)
  * кг 115р

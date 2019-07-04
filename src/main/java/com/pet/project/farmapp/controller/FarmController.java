@@ -3,7 +3,6 @@ package com.pet.project.farmapp.controller;
 import com.pet.project.farmapp.DTO.CowDto;
 import com.pet.project.farmapp.DTO.FarmDto;
 import com.pet.project.farmapp.DTO.FarmerDto;
-import com.pet.project.farmapp.model.Farmer;
 import com.pet.project.farmapp.service.FarmService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -51,11 +50,12 @@ public class FarmController {
     }
 
     @GetMapping("/{id}/cow/cost")
-    public ResponseEntity<String> getCowsCostByFarmId(@PathVariable Long id){
+    public ResponseEntity<List<String>> getCowsCostByFarmId(@PathVariable Long id){
         Long totalCost = service.getCowsCostByFarmId(id);
-        String msg = "Стоимость всех коров фермы с айди " + id
-                + " - " + totalCost + " рублей.";
-        return ResponseEntity.ok(msg);
+        List<String> list = new ArrayList<>();
+        list.add("Стоимость всех коров фермы с айди " + id+ ": "
+                + totalCost + " рублей.");
+        return ResponseEntity.ok(list);
     }
 
     @PostMapping

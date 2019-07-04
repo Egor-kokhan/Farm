@@ -5,14 +5,13 @@ import com.pet.project.farmapp.DTO.CowDto;
 import java.util.List;
 
 /**
- * /farm/list
- * /farm/add
- * /farm/update
- * /farm/delete
- *     FarmerDto getById(long id);
- *     void create(FarmerDto farmerDto);
- *     void delete(long id);
- *     void update(FarmerDto farmerDto, long id);
+ *
+ * /cow/list
+ * /cow/{id}
+ * /cow/(post)
+ * /cow/{id}(put)
+ * /cow/{id}(delete)
+ *
  */
 public interface CowService {
     List<CowDto> getAll();

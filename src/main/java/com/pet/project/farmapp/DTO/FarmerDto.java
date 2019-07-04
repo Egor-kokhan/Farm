@@ -21,6 +21,7 @@ public class FarmerDto {
     private Long farmId;
 
     @Size(min = 14,max = 20)
+    @NotNull
     private String phone;
 
     @Size(max = 100)
