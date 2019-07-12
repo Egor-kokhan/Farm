@@ -1,13 +1,12 @@
 package com.pet.project.farmapp.service.impl;
 
 import com.pet.project.farmapp.DTO.CowDto;
-import com.pet.project.farmapp.controller.exceptions.ElasticException;
+import com.pet.project.farmapp.controller.exceptions.NotFoundException;
 import com.pet.project.farmapp.mapper.FarmAppMapper;
 import com.pet.project.farmapp.model.Cow;
 import com.pet.project.farmapp.repository.CowRepository;
 import com.pet.project.farmapp.service.CowService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -36,7 +35,7 @@ public class CowServiceImpl implements CowService{
     @Transactional
     public CowDto getById(long id) {
         if(!cowRepository.existsById(id)){
-            throw new ElasticException(HttpStatus.NOT_FOUND, "Корова не найдена. Введите корректный id.");
+            throw new NotFoundException();
         }
         return mapper.cowToCowDto(cowRepository.getOne(id));
     }
@@ -52,7 +51,7 @@ public class CowServiceImpl implements CowService{
     @Transactional
     public void delete(long id) {
         if(!cowRepository.existsById(id)){
-            throw new ElasticException(HttpStatus.NOT_FOUND, "Корова не найдена. Введите корректный id.");
+            throw new NotFoundException();
         }
         cowRepository.deleteById(id);
     }
@@ -61,7 +60,7 @@ public class CowServiceImpl implements CowService{
     @Transactional
     public void update(CowDto cowDto, long id) {
         if(!cowRepository.existsById(id)){
-            throw new ElasticException(HttpStatus.NOT_FOUND, "Корова не найдена. Введите корректный id.");
+            throw new NotFoundException();
         }
         Cow cow = cowRepository.getOne(id);
         if (cowDto.getFarmerId() != null) {

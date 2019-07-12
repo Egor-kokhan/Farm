@@ -3,7 +3,7 @@ package com.pet.project.farmapp.service.impl;
 import com.pet.project.farmapp.DTO.CowDto;
 import com.pet.project.farmapp.DTO.FarmDto;
 import com.pet.project.farmapp.DTO.FarmerDto;
-import com.pet.project.farmapp.controller.exceptions.ElasticException;
+import com.pet.project.farmapp.controller.exceptions.NotFoundException;
 import com.pet.project.farmapp.mapper.FarmAppMapper;
 import com.pet.project.farmapp.model.Cow;
 import com.pet.project.farmapp.model.Farm;
@@ -47,7 +47,7 @@ public class FarmServiceImpl implements FarmService {
     @Transactional
     public List<FarmerDto> getAllFarmersByFarmId(long id) {
         if(!farmRepository.existsById(id)){
-            throw new ElasticException(HttpStatus.NOT_FOUND, "Ферма не найдена. Введите корректный id.");
+            throw new NotFoundException();
         }
         List<Farmer> farmersDto = farmerRepository.findAllByFarmId(id);
         return mapper.convertFarmerListToFarmerDtoList(farmersDto);
@@ -77,7 +77,7 @@ public class FarmServiceImpl implements FarmService {
     @Transactional
     public FarmDto getById(long id) {
         if(!farmRepository.existsById(id)){
-            throw new ElasticException(HttpStatus.NOT_FOUND, "Ферма не найдена. Введите корректный id.");
+            throw new NotFoundException();
         }
         Farm farm = farmRepository.getOne(id);
         return mapper.farmDtoToFarm(farm);
@@ -94,7 +94,7 @@ public class FarmServiceImpl implements FarmService {
     @Transactional
     public void update(FarmDto farmDto, long id) {
         if(!farmRepository.existsById(id)){
-            throw new ElasticException(HttpStatus.NOT_FOUND, "Ферма не найдена. Введите корректный id.");
+            throw new NotFoundException();
         }
         Farm farm = farmRepository.getOne(id);
         if (farmDto.getName() != null) {
@@ -107,15 +107,14 @@ public class FarmServiceImpl implements FarmService {
     @Transactional
     public void delete(long id) {
         if(!farmRepository.existsById(id)){
-            throw new ElasticException(HttpStatus.NOT_FOUND, "Ферма не найдена. Введите корректный id.");
+            throw new NotFoundException();
         }
         farmRepository.deleteById(id);
     }
 
-
     private List<Cow> getCowsByFarmId(long id) {
         if(!farmRepository.existsById(id)){
-            throw new ElasticException(HttpStatus.NOT_FOUND, "Ферма не найдена. Введите корректный id.");
+            throw new NotFoundException();
         }
         List<Farmer> farmers = farmerRepository.findAllByFarmId(id);
         ArrayList<Long> farmersId = new ArrayList<>();
@@ -124,5 +123,4 @@ public class FarmServiceImpl implements FarmService {
         }
         return cowRepository.findAllByFarmerIdIn(farmersId);
     }
-
 }

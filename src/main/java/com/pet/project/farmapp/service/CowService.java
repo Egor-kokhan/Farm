@@ -6,7 +6,7 @@ import java.util.List;
 
 /**
  *
- * /cow/list
+ * /cow
  * /cow/{id}
  * /cow/(post)
  * /cow/{id}(put)

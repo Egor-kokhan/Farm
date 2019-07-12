@@ -25,7 +25,7 @@ public class FarmController {
         this.service = service;
     }
 
-    @GetMapping("/list")
+    @GetMapping()
     public ResponseEntity<List<FarmDto>> getAll(){
         List<FarmDto> farms = service.getAll();
         return ResponseEntity.ok(farms);
@@ -37,13 +37,13 @@ public class FarmController {
         return ResponseEntity.ok(farmDto);
     }
 
-    @GetMapping("/{id}/farmer/list")
+    @GetMapping("/{id}/farmer")
     public ResponseEntity<List<FarmerDto>> getAllFarmersByFarmId(@PathVariable Long id){
         List<FarmerDto> farmers = service.getAllFarmersByFarmId(id);
         return ResponseEntity.ok(farmers);
     }
 
-    @GetMapping("/{id}/cow/list")
+    @GetMapping("/{id}/cow")
     public ResponseEntity<List<CowDto>> getAllCowsByFarmId(@PathVariable Long id){
         List<CowDto> cows = service.getAllCowsByFarmId(id);
         return ResponseEntity.ok(cows);

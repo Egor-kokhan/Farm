@@ -2,7 +2,7 @@ package com.pet.project.farmapp.service.impl;
 
 import com.pet.project.farmapp.DTO.CowDto;
 import com.pet.project.farmapp.DTO.FarmerDto;
-import com.pet.project.farmapp.controller.exceptions.ElasticException;
+import com.pet.project.farmapp.controller.exceptions.NotFoundException;
 import com.pet.project.farmapp.mapper.FarmAppMapper;
 import com.pet.project.farmapp.model.Cow;
 import com.pet.project.farmapp.model.Farmer;
@@ -10,7 +10,6 @@ import com.pet.project.farmapp.repository.CowRepository;
 import com.pet.project.farmapp.repository.FarmerRepository;
 import com.pet.project.farmapp.service.FarmerService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -42,7 +41,7 @@ public class FarmerServiceImpl implements FarmerService {
     @Transactional
     public List<CowDto> getAllCowsByFarmerId(long id) {
         if(!farmerRepository.existsById(id)){
-            throw new ElasticException(HttpStatus.NOT_FOUND, "Фермер не найден. Введите корректный id.");
+            throw new NotFoundException();
         }
         List<Cow> cows = cowRepository.findAllByFarmerId(id);
         return mapper.convertCowListToCowDtoList(cows);
@@ -52,7 +51,7 @@ public class FarmerServiceImpl implements FarmerService {
     @Transactional
     public FarmerDto getById(long id) {
         if(!farmerRepository.existsById(id)){
-            throw new ElasticException(HttpStatus.NOT_FOUND, "Фермер не найден. Введите корректный id.");
+            throw new NotFoundException();
         }
         return mapper.farmerDtoToFarmer(farmerRepository.getOne(id));
     }
@@ -67,9 +66,8 @@ public class FarmerServiceImpl implements FarmerService {
     @Override
     @Transactional
     public void delete(long id) {
-
         if(!farmerRepository.existsById(id)){
-            throw new ElasticException(HttpStatus.NOT_FOUND, "Фермер не найден. Введите корректный id.");
+            throw new NotFoundException();
         }
         farmerRepository.deleteById(id);
     }
@@ -78,7 +76,7 @@ public class FarmerServiceImpl implements FarmerService {
     @Transactional
     public void update(FarmerDto farmerDto, long id) {
         if(!farmerRepository.existsById(id)){
-            throw new ElasticException(HttpStatus.NOT_FOUND,"Фермер не найден. Введите корректный id.");
+            throw new NotFoundException();
         }
         Farmer farmer = farmerRepository.getOne(id);
         if(farmerDto.getName()!= null){

@@ -6,9 +6,9 @@ import com.pet.project.farmapp.DTO.FarmerDto;
 import java.util.List;
 
 /**
- * /farmer/list
+ * /farmer
  * /farmer/{id}
- * /farmer/{id}/cow/list
+ * /farmer/{id}/cow
  * /farmer/(post)
  * /farmer/{id}(put)
  * /farmer/{id}(delete)

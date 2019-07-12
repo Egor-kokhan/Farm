@@ -23,7 +23,7 @@ public class CowController {
         this.service = service;
     }
 
-    @GetMapping("/list")
+    @GetMapping()
     public ResponseEntity<List<CowDto>> getCows(){
         List<CowDto> cows = service.getAll();
         return ResponseEntity.ok(cows);

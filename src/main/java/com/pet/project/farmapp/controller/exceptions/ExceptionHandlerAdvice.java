@@ -7,8 +7,8 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 @ControllerAdvice
 public class ExceptionHandlerAdvice {
 
-    @ExceptionHandler(ElasticException.class)
-    public ResponseEntity handleException(ElasticException e) {
+    @ExceptionHandler(NotFoundException.class)
+    public ResponseEntity handleException(NotFoundException e) {
         return ResponseEntity
                 .status(e.getHttpStatus())
                 .body(e.getMessage());

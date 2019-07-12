@@ -23,7 +23,7 @@ public class FarmerController {
         this.service = service;
     }
 
-    @GetMapping("/list")
+    @GetMapping()
     public ResponseEntity<List<FarmerDto>> getAll(){
         List<FarmerDto> farmers = service.getAll();
         return ResponseEntity.ok(farmers);
@@ -35,7 +35,7 @@ public class FarmerController {
         return ResponseEntity.ok(farmerDto);
     }
 
-    @GetMapping("/{id}/cow/list")
+    @GetMapping("/{id}/cow")
     public ResponseEntity<List<CowDto>> getAllCowsByFarmerId(@PathVariable Long id) {
         List<CowDto> cows = service.getAllCowsByFarmerId(id);
         return ResponseEntity.ok(cows);
@@ -59,16 +59,3 @@ public class FarmerController {
         return ResponseEntity.ok(HttpStatus.ACCEPTED);
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-

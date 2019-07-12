@@ -7,10 +7,10 @@ import com.pet.project.farmapp.DTO.FarmerDto;
 import java.util.List;
 
 /**
- * /farm/list
+ * /farm
  * /farm/{id}
- * /farm/{id}/farmer/list
- * /farm/{id}/cow/list
+ * /farm/{id}/farmer
+ * /farm/{id}/cow
  * /farm/{id}/cow/cost
  * /farm/(post)
  * /farm/{id}(put)
